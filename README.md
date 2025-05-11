@@ -158,7 +158,7 @@ Szczegółowe wyniki i wnioski z tych eksperymentów dostępne są w pliku dokum
 
 ## Autor
 
-Projekt opracowany przez Jakuba Półtoraka (@JakubPoltorak147).
+Projekt opracowany przez Jakuba Półtoraka [@JakubPoltorak147](https://github.com/JakubPoltorak147).
 
 ## Dokumentacja
 
