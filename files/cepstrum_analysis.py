@@ -3,17 +3,6 @@ from windowing import apply_window
 
 
 def compute_cepstrum(frame, sample_rate, window_type='hamming'):
-    """
-    Oblicza rzeczywiste cepstrum ramki sygnału.
-
-    Args:
-        frame: Ramka sygnału (tablica 1D).
-        sample_rate: Częstotliwość próbkowania sygnału.
-        window_type: Typ funkcji okienkowej.
-
-    Returns:
-        Trójka (cepstrum, kwefrencja, logarytmiczne widmo).
-    """
     # Stosujemy okno
     windowed_frame = apply_window(frame, window_type)
 
@@ -33,18 +22,6 @@ def compute_cepstrum(frame, sample_rate, window_type='hamming'):
 
 
 def estimate_f0_from_cepstrum(cepstrum, quefrency, min_f0=50, max_f0=500):
-    """
-    Estymuje częstotliwość podstawową z cepstrum.
-
-    Args:
-        cepstrum: Cepstrum sygnału.
-        quefrency: Oś kwefrencji (czasu) odpowiadająca cepstrum.
-        min_f0: Minimalna częstotliwość podstawowa do rozważenia (Hz).
-        max_f0: Maksymalna częstotliwość podstawowa do rozważenia (Hz).
-
-    Returns:
-        Para (estymowana częstotliwość podstawowa, indeks piku).
-    """
     # Konwertujemy min/max F0 na zakres kwefrencji
     min_quefrency = 1 / max_f0
     max_quefrency = 1 / min_f0

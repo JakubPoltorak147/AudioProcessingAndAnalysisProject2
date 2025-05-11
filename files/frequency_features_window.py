@@ -15,9 +15,6 @@ from frequency_features import (
 
 
 class FrequencyFeaturesWindow:
-    """
-    Okno do wyświetlania wykresów parametrów dźwięku w dziedzinie częstotliwości.
-    """
 
     def __init__(self, parent, audio_data, sample_rate, frame_size=256, window_type='hamming',
                  overlap=0.5, frame_step=None):
@@ -53,7 +50,6 @@ class FrequencyFeaturesWindow:
         self.update_plots()
 
     def create_control_panel(self):
-        """Tworzy panel kontrolny z opcjami wykresów."""
         control_frame = ttk.LabelFrame(self.main_frame, text="Opcje wyświetlania", style="Freq.TLabelframe")
         control_frame.pack(fill=tk.X, padx=5, pady=5)
 
@@ -84,7 +80,6 @@ class FrequencyFeaturesWindow:
                         command=self.update_plots).grid(row=1, column=2, padx=5, pady=5, sticky="w")
 
     def create_plot_area(self):
-        """Tworzy obszar wykresów."""
         # Ramka wykresu
         plot_frame = ttk.LabelFrame(self.main_frame, text="Parametry w dziedzinie częstotliwości",
                                     style="Freq.TLabelframe")
@@ -96,7 +91,6 @@ class FrequencyFeaturesWindow:
         self.canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
 
     def compute_all_features(self):
-        """Oblicza wszystkie parametry częstotliwościowe dla ramek."""
         # Liczba ramek
         num_frames = 1 + (len(self.audio_data) - self.frame_size) // self.frame_step
 
@@ -148,7 +142,6 @@ class FrequencyFeaturesWindow:
             self.feature_data['scf'][i] = compute_spectral_crest_factor(fft_frame)
 
     def update_plots(self):
-        """Aktualizuje wykresy na podstawie wybranych parametrów."""
         # Czyścimy figurę
         self.fig.clear()
 

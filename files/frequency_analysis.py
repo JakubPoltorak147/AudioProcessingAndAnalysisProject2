@@ -18,9 +18,6 @@ from frequency_features_window import FrequencyFeaturesWindow
 
 
 class FrequencyAnalysisWindow:
-    """
-    Okno do analizy częstotliwościowej sygnałów dźwiękowych.
-    """
 
     def __init__(self, parent, audio_app):
         self.parent = parent
@@ -104,7 +101,6 @@ class FrequencyAnalysisWindow:
         features_button.pack(padx=5, pady=5)
 
     def create_stats_panel(self):
-        """Tworzy panel z parametrami statystycznymi dla analizy częstotliwościowej."""
         self.stats_frame = ttk.LabelFrame(self.main_frame, text="Parametry częstotliwościowe", style="Freq.TLabelframe")
         self.stats_frame.pack(fill=tk.X, padx=5, pady=5)
 
@@ -113,7 +109,6 @@ class FrequencyAnalysisWindow:
         self.stats_text.config(state=tk.DISABLED)
 
     def update_stats(self):
-        """Aktualizuje panel statystyk o parametry analizy częstotliwościowej."""
         if hasattr(self.audio_app, 'data') and self.audio_app.data is not None:
             # Pobieramy dane sygnału
             signal = self.audio_app.data
@@ -165,7 +160,6 @@ class FrequencyAnalysisWindow:
             self.stats_text.config(state=tk.DISABLED)
 
     def create_plot_area(self):
-        """Tworzy obszar wykresów z zakładkami dla różnych wizualizacji."""
         # Tworzymy notebook z zakładkami
         self.notebook = ttk.Notebook(self.main_frame)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
@@ -196,7 +190,6 @@ class FrequencyAnalysisWindow:
         self.spec_canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
     def update_plots(self):
-        """Aktualizuje wszystkie wykresy na podstawie bieżących ustawień."""
         if hasattr(self.audio_app, 'data') and self.audio_app.data is not None:
             try:
                 # Pobieramy parametry z UI
@@ -217,7 +210,6 @@ class FrequencyAnalysisWindow:
                 messagebox.showerror("Błąd", f"Błąd aktualizacji wykresów: {e}")
 
     def plot_time_domain(self):
-        """Rysuje sygnał w dziedzinie czasu z zastosowaną funkcją okienkową."""
         # Czyścimy poprzedni wykres
         self.time_fig.clear()
         ax = self.time_fig.add_subplot(111)
@@ -254,7 +246,6 @@ class FrequencyAnalysisWindow:
         self.time_canvas.draw()
 
     def plot_frequency_domain(self):
-        """Rysuje reprezentację w dziedzinie częstotliwości przy użyciu FFT."""
         # Czyścimy poprzedni wykres
         self.freq_fig.clear()
         ax = self.freq_fig.add_subplot(111)
@@ -300,7 +291,6 @@ class FrequencyAnalysisWindow:
         self.freq_canvas.draw()
 
     def plot_spectrogram(self):
-        """Rysuje spektrogram sygnału."""
         # Czyścimy poprzedni wykres
         self.spec_fig.clear()
         ax = self.spec_fig.add_subplot(111)
@@ -331,7 +321,6 @@ class FrequencyAnalysisWindow:
         self.spec_canvas.draw()
 
     def compute_spectrogram(self, signal, sample_rate):
-        """Oblicza spektrogram sygnału."""
         # Parametry
         window_length = self.frame_length
         hop_length = int(window_length * (1 - self.overlap))  # Bazując na nakładaniu
@@ -368,7 +357,6 @@ class FrequencyAnalysisWindow:
         return spec, freqs, times
 
     def open_frequency_features(self):
-        """Otwiera okno z wykresami parametrów częstotliwościowych dla ramek."""
         if hasattr(self.audio_app, 'data') and self.audio_app.data is not None:
             FrequencyFeaturesWindow(
                 self.window,
@@ -383,9 +371,6 @@ class FrequencyAnalysisWindow:
 
 
 class CepstrumAnalysisWindow:
-    """
-    Okno do analizy cepstralnej i wykrywania częstotliwości podstawowej.
-    """
 
     def __init__(self, parent, audio_app):
         self.parent = parent
@@ -421,7 +406,6 @@ class CepstrumAnalysisWindow:
         self.update_plots()
 
     def create_f0_info_panel(self):
-        """Tworzy panel informacyjny z wynikami analizy F0."""
         self.f0_info_frame = ttk.LabelFrame(self.main_frame, text="Informacje o F0", style="Freq.TLabelframe")
         self.f0_info_frame.pack(fill=tk.X, padx=5, pady=5)
 
@@ -430,7 +414,6 @@ class CepstrumAnalysisWindow:
         self.f0_info_text.config(state=tk.DISABLED)
 
     def update_f0_info(self, f0_value):
-        """Aktualizuje panel informacyjny o wartości F0."""
         self.f0_info_text.config(state=tk.NORMAL)
         self.f0_info_text.delete(1.0, tk.END)
 
@@ -444,7 +427,6 @@ class CepstrumAnalysisWindow:
         self.f0_info_text.config(state=tk.DISABLED)
 
     def create_control_panel(self):
-        """Tworzy panel kontrolny z opcjami analizy cepstralnej."""
         control_frame = ttk.LabelFrame(self.main_frame, text="Panel Kontrolny", style="Freq.TLabelframe")
         control_frame.pack(fill=tk.X, padx=5, pady=5)
 
@@ -498,7 +480,6 @@ class CepstrumAnalysisWindow:
         features_button.pack(padx=5, pady=5)
 
     def create_plot_area(self):
-        """Tworzy obszar wykresów z zakładkami dla różnych wizualizacji."""
         # Tworzymy notebook z zakładkami
         self.notebook = ttk.Notebook(self.main_frame)
         self.notebook.pack(fill=tk.BOTH, expand=True, padx=5, pady=5)
@@ -529,7 +510,6 @@ class CepstrumAnalysisWindow:
         self.f0_canvas.get_tk_widget().pack(fill=tk.BOTH, expand=True)
 
     def update_plots(self):
-        """Aktualizuje wszystkie wykresy na podstawie bieżących ustawień."""
         if hasattr(self.audio_app, 'data') and self.audio_app.data is not None:
             try:
                 # Pobieramy parametry z UI
@@ -551,7 +531,6 @@ class CepstrumAnalysisWindow:
                 messagebox.showerror("Błąd", f"Błąd aktualizacji wykresów: {e}")
 
     def plot_log_spectrum(self):
-        """Rysuje logarytmiczne widmo amplitudowe."""
         # Czyścimy poprzedni wykres
         self.spectrum_fig.clear()
         ax = self.spectrum_fig.add_subplot(111)
@@ -583,7 +562,6 @@ class CepstrumAnalysisWindow:
         self.spectrum_canvas.draw()
 
     def plot_cepstrum(self):
-        """Rysuje cepstrum i zaznacza częstotliwość podstawową."""
         # Czyścimy poprzedni wykres
         self.cepstrum_fig.clear()
         ax = self.cepstrum_fig.add_subplot(111)
@@ -627,7 +605,6 @@ class CepstrumAnalysisWindow:
         return f0
 
     def plot_f0_over_time(self):
-        """Rysuje częstotliwość podstawową w czasie."""
         # Czyścimy poprzedni wykres
         self.f0_fig.clear()
         ax = self.f0_fig.add_subplot(111)
@@ -679,7 +656,6 @@ class CepstrumAnalysisWindow:
         self.f0_canvas.draw()
 
     def open_frequency_features(self):
-        """Otwiera okno z wykresami parametrów częstotliwościowych dla ramek."""
         if hasattr(self.audio_app, 'data') and self.audio_app.data is not None:
             FrequencyFeaturesWindow(
                 self.window,
